@@ -1,0 +1,154 @@
+import java.util.concurrent.SynchronousQueue;
+
+public class ArrayPractice {
+
+	public static int max(int[] list) {
+		int max = 0;
+		for(int i = 0; i < list.length; i++) {
+			if(list[i] > max) {
+				max = list[i];
+			}
+		}
+		return max;
+	}
+
+	public static int min(int[] list) {
+		int min = list[0];
+		for(int i = 0; i < list.length; i++) {
+			if(list[i] < min) {
+				min = list[i];
+			}
+		}
+
+		return min;
+	}
+
+
+
+	public static boolean equalArray(int[] l1, int[] l2) {
+		if(l1.length != l2.length)
+			return false;
+		for(int i = 0; i < l1.length; i++) {
+			if(l1[i] != l2[i])
+				return false;
+		}
+		return true;
+	}
+
+	public static boolean equalArray2(int[] l1, int[] l2) { 
+		if(l1.length != l2.length)
+			return false;
+		for(int i = 0; i < l1.length; i++) { // for each element in l1
+			// compare the element to each element of l2
+			// is the element found in l2
+			if(!isInArray(l1[i], l2)) { // element not in l2
+				return false;
+			}
+		}
+		return true; 
+	}
+	public static boolean isInArray(int u, int[] list) {
+		for(int i = 0; i < list.length; i++) {
+			if(u == list[i])
+				return true;
+		}
+		return false;
+	}
+
+	/**
+	 * this function takes an array of integer and returns an array of integer
+	 * @param list
+	 * @return
+	 */
+	public static int[] reverse(int[] list) {
+		int left = 0;
+		int right = list.length - 1;
+		while( left < right ) {
+			// swap the values at the left and right indexes
+			int temp = list[left];
+			list[left] = list[right];
+			list[right] = temp;
+			// move the left and right index pointers in toward the center
+			left++;
+			right--;
+		}
+		return list;
+	}
+
+	/**
+	 * 
+	 * @param list
+	 * @return
+	 */
+	public static int secondMax(int[] list) {
+		int max = 0;
+		int secondMax = 0;
+
+		for (int i = 0; i < list.length; i++) {
+			// if new max number found
+			if (list[i] > max) {
+				// change current highest number to second highest
+				secondMax = max;
+				// set the new highest
+				max = list[i];
+			} else if (list[i] > secondMax) {
+				// just replace the second highest
+				secondMax = list[i];
+			}
+		}
+		return secondMax;
+	}
+
+
+	public static void insertionSort(int[] list) {
+
+	}
+
+	public static void addItem(int[] list, int pos, int num) {
+		int[] result = new int[list.length];
+		for(int i = 0; i < pos; i++)
+			result[i] = list[i];
+		result[pos] = num;
+		for(int i = pos + 1; i < list.length; i++)
+			result[i] = list[i - 1];
+		for(int i = 0; i < result.length; i++) {
+			System.out.print(result[i] + "");
+		}
+		System.out.println();
+	}
+	
+
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] list = new int[10];
+		int[] list2 = new int[10];
+		System.out.print("list 1: ");
+		for(int i = 0; i < list.length; i++) {
+			list[i] = (int)(Math.random()*10);
+			System.out.print(list[i] + " ");
+		}
+		System.out.println();
+		System.out.print("list 2: ");
+		for(int i = 0; i < list2.length; i++) {
+			list2[i] = (int)(Math.random() * 10);
+			System.out.print(list2[i] + " ");
+		}
+
+		System.out.println();
+		System.out.println("max: " + max(list));
+		System.out.println("min: " + min(list));
+		System.out.println(equalArray(list, list2));
+		System.out.println(equalArray2(list, list2));
+		list = reverse(list);
+		System.out.println("reverse of list 1: ");
+		for(int i = 0; i < list.length; i++) {
+			System.out.print(list[i] + " ");
+		}
+		System.out.println();
+		System.out.println(secondMax(list));
+		addPos(list, 5, 9);
+
+	}
+
+}

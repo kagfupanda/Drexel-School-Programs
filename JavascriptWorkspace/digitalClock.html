@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		//this function displays the clock in the status line
+		function display_time_in_status_line() {
+			var d = new Date();
+			var h = d.getHours();
+			var m = d.getMinutes();
+			var ampm = (h >= 12)?"PM":"AM";
+			
